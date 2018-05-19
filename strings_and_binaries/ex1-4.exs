@@ -1,5 +1,5 @@
 defmodule MyString do
-  def printable?(str), do: Enum.all? str, &(&1 in ? ..?~)
+  def printable?(str), do: Enum.all? str, &(&1 in ?\s..?~)
 
   def anagram?(word1, word2) do
     Enum.count(word1 -- word2) === 0 && Enum.count(word2 -- word1) === 0
