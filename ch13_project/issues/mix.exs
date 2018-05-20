@@ -6,6 +6,8 @@ defmodule Issues.Mixfile do
       app: :issues,
       escript: escript_config(),
       version: "0.1.0",
+      name: "Issues",
+      source: "https://github.com/rottgoth/issues",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps()
@@ -23,7 +25,10 @@ defmodule Issues.Mixfile do
   defp deps do
     [
       {:httpotion, "~> 3.1.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:ex_doc, "~> 0.18.1"},
+      {:earmark, "~> 1.2.4"},
+
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
