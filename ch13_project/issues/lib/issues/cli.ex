@@ -1,5 +1,7 @@
 defmodule Issues.CLI do
 
+  import Issues.TableFormatter, only: [print_table_for_columns: 2]
+
   @default_count 4
 
   @moduledoc """
@@ -45,9 +47,41 @@ defmodule Issues.CLI do
     System.halt(0)
   end
 
-  def process({ user, project, _count }) do
+  def process({ user, project, count }) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response()
+    |> sort_into_descending_order()
+    |> last(count)
+    |> print_table_for_columns(["number", "created_at", "title"])
+  end
+
+  # def print_table(list) do
+  #   IO.write """
+  #    #   | created_at           | title
+  #   -----+----------------------+-----------------------------------------------------
+  #   """
+  #   print_issue(list)
+  # end
+
+  # def print_issue([]), do: []
+
+  # def print_issue([issue | rest]) do
+  #   %{ "number" => number, "created_at" => created_at, "title" => title } = issue
+  #   IO.puts "#{number} | #{created_at} | #{title}"
+  #   print_issue(rest)
+  # end
+
+  def last(list, count) do
+    list
+    |> Enum.take(count)
+    |> Enum.reverse()
+  end
+
+  def sort_into_descending_order(list_of_issues) do
+    list_of_issues
+    |> Enum.sort(fn i1, i2 ->
+        i1["created_at"] >= i2["created_at"]
+      end)
   end
 
   def decode_response({ :ok, body }), do: body

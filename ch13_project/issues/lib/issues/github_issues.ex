@@ -6,17 +6,17 @@ defmodule Issues.GithubIssues do
   def fetch(user, project) do
     issues_url(user, project)
     |> HTTPotion.get(headers: @user_agent)
-    |> handle_response
+    |> handle_response()
   end
 
   def issues_url(user, project) do
-    "#{github_url}/repos/#{user}/#{project}/issues"
+    "#{@github_url}/repos/#{user}/#{project}/issues"
   end
 
   def handle_response(%{status_code: status_code, body: body}) do
     {
       status_code |> check_for_error(),
-      body        |> Poison.Parse.parse!()
+      body        |> Poison.Parser.parse!()
     }
   end
 
