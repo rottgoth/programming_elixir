@@ -10,7 +10,7 @@ defmodule Duper.Application do
     children = [
       # Starts a worker by calling: Duper.Worker.start_link(arg)
       Duper.Results,
-      {Duper.PathFinder, "/Users/rottgoth/Downloads"},
+      {Duper.PathFinder, "."},
       Duper.WorkerSupervisor,
       {Duper.Gatherer, 1},
       # {Duper.Worker, arg},
