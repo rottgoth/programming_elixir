@@ -9,8 +9,9 @@ defmodule Duper.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Duper.Worker.start_link(arg)
-      # {Duper.Worker, arg},
       Duper.Results,
+      {Duper.PathFinder, "."},
+      # {Duper.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
