@@ -9,7 +9,7 @@ defmodule Sequence.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Sequence.Worker.start_link(arg)
-      {Sequence.Stash, 123},
+      {Sequence.Stash, Application.get_env(:sequence, :initial_number)},
       {Sequence.Server, nil},
     ]
 

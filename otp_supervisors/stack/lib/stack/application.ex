@@ -5,11 +5,11 @@ defmodule Stack.Application do
 
   use Application
 
-  def start(_type, _args) do
+  def start(_type, stack) do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Stack.Worker.start_link(arg)
-      {Stack.Stash, [1,2,3]},
+      {Stack.Stash, stack},
       {Stack.Server, nil},
     ]
 
