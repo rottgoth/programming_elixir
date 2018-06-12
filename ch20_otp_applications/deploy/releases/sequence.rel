@@ -1,0 +1,11 @@
+{release,{"sequence","0.1.0"},
+         {erts,"9.3.1"},
+         [{kernel,"5.4.3"},
+          {stdlib,"3.4.5"},
+          {logger,"1.6.5"},
+          {compiler,"7.1.5"},
+          {elixir,"1.6.5"},
+          {sequence,"0.1.0"},
+          {iex,"1.6.5"},
+          {sasl,"3.1.2"},
+          {runtime_tools,"1.12.5"}]}.
